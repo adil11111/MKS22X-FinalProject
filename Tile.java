@@ -26,4 +26,25 @@ public class Tile {
         }
         return false;
     }
+    public void goLeft(TetrisBoard board) {
+        x--;
+        if (x < 0 || board.getTile(x, y) != null) {
+            x++;
+        }
+    }
+
+    public void goRight(TetrisBoard board) {
+        x++;
+        if (x >= 10 || board.getTile(x, y) != null) {
+            x--;
+        }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
