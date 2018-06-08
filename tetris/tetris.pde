@@ -20,3 +20,33 @@ void setup() {
     frameRate(5);
     background(0);
 }
+
+void draw() {
+    //update
+    if (current.drop(tboard)) {
+        current = new Tile(5, 0);
+    }
+
+    //draw
+    paint();
+}
+
+void paint() {
+    background(0);
+    noStroke();
+
+    for (int y = 0; y < tboard.getBoard().length; y++) {
+        for (int x = 0; x < tboard.getBoard()[0].length; x++) {
+            if (tboard.getTile(x, y) != null) {
+                fill(colors[tboard.getTile(x, y).getColor()]);
+                rect(x*tileSize, (y-2)*tileSize, tileSize, tileSize);
+            }
+        }
+    }
+
+    fill(colors[current.getColor()]);
+    rect(current.getX()*tileSize, (current.getY()-2)*tileSize, tileSize, tileSize);
+
+    stroke(255);
+    line(10*tileSize, 0, 10*tileSize, height);
+}
