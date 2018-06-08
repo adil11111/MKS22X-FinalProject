@@ -50,3 +50,11 @@ void paint() {
     stroke(255);
     line(10*tileSize, 0, 10*tileSize, height);
 }
+void keyPressed() {
+    if (keyCode == LEFT) {
+        current.goLeft(tboard);
+    } else if (keyCode == RIGHT) {
+        current.goRight(tboard);
+    } 
+    paint();
+}
