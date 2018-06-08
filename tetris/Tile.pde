@@ -1,20 +1,16 @@
 public class Tile {
 
-    private int color;
+    private int c;
     private int x;
     private int y;
     
     public Tile(int nx, int ny, int ncolor) {
-        color = ncolor;
+        c = ncolor;
         x = nx;
         y = ny;
     }
     public Tile(int nx, int ny) {
         this(nx, ny, (int) (Math.random()*7));
-    }
-    
-    public int getColor() {
-        return color;
     }
     
     public boolean drop(TetrisBoard board) {
@@ -26,20 +22,24 @@ public class Tile {
         }
         return false;
     }
-    public void goLeft(TetrisBoard board) {
+    public boolean goLeft(TetrisBoard board) {
         x--;
-        if (x < 0 || board.getTile(x, y) != null) {
-            x++;
-        }
+        return x < 0 || board.getTile(x, y) != null;
     }
 
-    public void goRight(TetrisBoard board) {
+    public boolean goRight(TetrisBoard board) {
         x++;
-        if (x >= 10 || board.getTile(x, y) != null) {
-            x--;
-        }
+        return x >= 10 || board.getTile(x, y) != null;
     }
-
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+    }    
+    
+    public int getColor() {
+        return c;
+    }
+    
     public int getX() {
         return x;
     }
