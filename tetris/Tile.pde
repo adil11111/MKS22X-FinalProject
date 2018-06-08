@@ -13,15 +13,17 @@ public class Tile {
         this(nx, ny, (int) (Math.random()*7));
     }
     
-    public boolean drop(TetrisBoard board) {
+    boolean drop(TetrisBoard board) {
         y++;
-        if (y >= 22 || board.getTile(x, y) != null) {
-            y--;
-            board.addTile(x, y, this);
-            return true; // true means locked in place
-        }
-        return false;
+        return y >= 22 || board.getTile(x, y) != null; // true means locked in place
     }
+
+    boolean lift(TetrisBoard board) {
+        y--;
+        board.addTile(x, y, this);
+        return y <= 2; //piece is above screen and game is over
+    }
+
     public boolean goLeft(TetrisBoard board) {
         x--;
         return x < 0 || board.getTile(x, y) != null;
