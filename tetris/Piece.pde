@@ -174,3 +174,7 @@ public Piece() {
             }
         }
     }
+        public Tile[][] getP() {
+        return p;
+    }
+    
