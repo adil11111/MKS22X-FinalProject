@@ -59,8 +59,33 @@ void paint() {
         }
     }
 
-    fill(colors[current.getColor()]);
-    rect(current.getX()*tileSize, (current.getY()-2)*tileSize, tileSize, tileSize);
+    //fill(colors[current.getColor()]);
+    //rect(current.getX()*tileSize, (current.getY()-2)*tileSize, tileSize, tileSize);
+
+    Tile[][] p = current.getP();
+    for (int y = 0; y < 4; y++) {
+        for (int x = 0; x < 4; x++) {
+            if (p[y][x] != null) {
+                Tile t = p[y][x];
+                fill(colors[t.getColor()]);
+                rect(t.getX()*tileSize, (t.getY()-2)*tileSize, tileSize, tileSize);
+            }
+        }
+    }
+
+    fill(255);
+    text("Score:\n" + score, 410, 600);
+    text("Next:", 410, 200);
+    p = next.getP();
+    for (int y = 0; y < 4; y++) {
+        for (int x = 0; x < 4; x++) {
+            if (p[y][x] != null) {
+                Tile t = p[y][x];
+                fill(colors[t.getColor()]);
+                rect(410 + tileSize*x, 300 + tileSize*y, tileSize, tileSize);
+            }
+        }
+    }
 
     stroke(255);
     line(10*tileSize, 0, 10*tileSize, height);
