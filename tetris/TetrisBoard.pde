@@ -17,7 +17,7 @@ public class TetrisBoard {
     public void addTile(int x, int y, Tile t) {
         board[y][x] = t;
     }
-        public int checkCompletions() {
+    public int checkCompletions() {
         int numCompleted = 0;
         for (int y = 2; y < 22; y++) {
             if (checkRow(y)) {

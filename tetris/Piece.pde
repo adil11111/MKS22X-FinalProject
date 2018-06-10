@@ -58,6 +58,30 @@ public Piece() {
                 break;
         }
     }
+        public boolean drop(TetrisBoard board) {
+        boolean ret = false;
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+                if (p[y][x] != null) {
+                    if (p[y][x].drop(board)) {
+                        ret = true;
+                    }
+                }
+            }
+        }
+
+        if (ret) {
+            for (int y = 0; y < 4; y++) {
+                for (int x = 0; x < 4; x++) {
+                    if (p[y][x] != null) {
+                        p[y][x].lift(board);
+                    }
+                }
+            }
+        }
+
+        return ret;
+    }
     public void goLeft(TetrisBoard board) {
         boolean valid = true;
         for (int y = 0; y < 4; y++) {
@@ -174,7 +198,7 @@ public Piece() {
             }
         }
     }
-        public Tile[][] getP() {
+    public Tile[][] getP() {
         return p;
     }
     
