@@ -1,7 +1,8 @@
 TetrisBoard tboard;
 final int tileSize = 40;
 color colors[];
-Tile current;
+Piece current, next;
+int score;
 
 void setup() {
     size(600, 800);
@@ -15,16 +16,30 @@ void setup() {
     colors[Piece.T] = color(200, 100, 30);
     colors[Piece.Z] = color(0, 255, 255);
 
-    current = new Tile(5, 0);
+    current = new Piece();
+    next = new Piece();
+    score = 0;
 
-    frameRate(5);
-    background(0);
+    frameRate(30);
+    textSize(48);
+    paint();
 }
 
 void draw() {
     //update
-    if (current.drop(tboard)) {
-        current = new Tile(5, 0);
+    if (frameCount % 30 == 0 && current.drop(tboard)) {
+        current = next;
+        next = new Piece();
+        int completion = tboard.checkCompletions();
+        if (completion < 0) {
+            //game over
+            background(0);
+            fill(255);
+            text("Game Over\nScore:\n" + score, 200, 400);
+            noLoop();
+            return;
+        }
+        score += completion;
     }
 
     //draw
