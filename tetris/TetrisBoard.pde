@@ -17,6 +17,13 @@ public class TetrisBoard {
     public void addTile(int x, int y, Tile t) {
         board[y][x] = t;
     }
+    void fillRandColors() {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[0].length; x++) {
+                board[y][x] = new Tile(x, y);
+            }
+        }
+    }
     public int checkCompletions() {
         int numCompleted = 0;
         for (int y = 2; y < 22; y++) {
@@ -52,5 +59,12 @@ public class TetrisBoard {
             }
         }
         return true;
+    }
+     private void shiftBoard(int y) {
+        for (; y > 0; y--) {
+            for (int x = 0; x < 10; x++) {
+                board[y][x] = board[y - 1][x];
+            }
+        }
     }
 }

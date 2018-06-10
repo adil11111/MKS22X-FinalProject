@@ -95,6 +95,24 @@ void keyPressed() {
         current.goLeft(tboard);
     } else if (keyCode == RIGHT) {
         current.goRight(tboard);
-    } 
+    } else if (keyCode == DOWN) {
+        if (current.drop(tboard)) {
+            current = next;
+            next = new Piece();
+            int completion = tboard.checkCompletions();
+            if (completion < 0) {
+                //game over
+                background(0);
+                fill(255);
+                text("Game Over\nScore:\n" + score, 200, 400);
+                noLoop();
+                return;
+            }
+            score += completion;
+        }
+    } else if (keyCode == UP) {
+        current.rotate(tboard);
+    }
+
     paint();
 }
