@@ -126,7 +126,7 @@ public Piece() {
             }
         }
     }
-}
+
     public void rotateHelper() {
         Tile[][] newP = new Tile[4][4];
         if (p[0][0] != null) {
@@ -201,4 +201,4 @@ public Piece() {
     public Tile[][] getP() {
         return p;
     }
-    
+}
